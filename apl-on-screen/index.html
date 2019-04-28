@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head><title>APL Projection</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/range.css">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    
+</head>
+
+<body>
+<div class="container">
+	<div class="row">
+        
+        <div class="branding">
+            <center>
+            <img class="brand-logo" src="images/apl-logo.png">
+                <h4>APL Auction</h4>
+            </center>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+        <div class="profile-header-container">   
+    		<div class="profile-header-img">
+                <img class="img-circle" src="images/profile1.png" />
+                <!-- badge -->
+                <div class="rank-label-container">
+                    <span class="label label-default rank-label">Jatan Gohel</span>
+                    
+                </div>
+                
+                <div class="ranking">
+                    
+                </div>
+            </div>
+        </div> 
+            </div>
+        
+        <div class="col-sm-6">
+            <div class="skills">
+                <label>Batting Skills:</label><input type="range" name="battingSkills" min="0" max="10" value="6">
+                <textarea id="battingComments" rows="4" cols="65" placeholder="Batting Comments"></textarea><br>
+            <label>Bowling Skills:</label><input type="range" name="bowlingSkills" min="0" max="10">
+                 <textarea id="bowlingComments" rows="4" cols="65" placeholder="Bowling Comments"></textarea><br>
+            <label>Fielding Skills:</label><input type="range" name="fieldingSkills" min="0" max="10">
+                 <textarea id="fieldingComments" rows="4" cols="65" placeholder="Fielding Comments"></textarea><br>
+                </div>
+        </div>
+	</div>
+</div>
+    
+    </body>
+</html>
