@@ -125,6 +125,18 @@ tr.scaffolding, .scaffolding td {
   background-color: #5bc0de;
 }
 
+.funkyradio-dt input[type="radio"]:checked ~ label:before,
+.funkyradio-dt input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #000000;
+}
+
+.funkyradio-warning input[type="radio"]:checked ~ label:before,
+.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #f0ad4e;
+}
+
 /* SCSS STYLES */
 
 .funkyradio {
