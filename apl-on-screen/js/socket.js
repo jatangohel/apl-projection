@@ -1,5 +1,8 @@
+//const URL = "192.168.31.34:8080"
+const URL = "localhost:8080"
+
 function onLoad (){
-    let wsUri = "ws://192.168.31.34:8080/APL2019/projector/projector@gmail.com";
+    let wsUri = "ws://"+URL+"/APL2019/projector/projector@gmail.com";
     let websocket = new WebSocket(wsUri);
     websocket.onmessage = function(evt) { onMessage(evt) };
     websocket.onerror = function(evt) { onError(evt) };

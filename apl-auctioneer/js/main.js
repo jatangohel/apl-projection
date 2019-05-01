@@ -1,5 +1,7 @@
 let jsonObject;
-const URL = "192.168.31.34:8080";
+//const URL = "192.168.31.34:8080";
+const URL = "localhost:8080";
+
 const onLoad = async function(){
     try {
         //@Jatan toggle next and sold button based on onLoad
@@ -47,11 +49,10 @@ const soldClick = async function(){
 
         const response = await fetch("http://"+URL+"/APL2019/webapi/player/playerSold", {
             method: "POST",
-            credentials: 'include',
             headers: {
                 "Content-Type": "application/json"
             },
-            referrer: "about:client",
+            credentials: 'include',
             body: JSON.stringify(jsonObject)
         }).then(function(response){
             return response.json();
