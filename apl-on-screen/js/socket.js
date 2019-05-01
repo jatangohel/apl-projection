@@ -1,20 +1,23 @@
-let wsUri = "ws://localhost:80/APL2019/socket/projector@gmail.com";
-let websocket = new WebSocket(wsUri);
-
-websocket.onmessage = function(evt) { onMessage(evt) };
-websocket.onerror = function(evt) { onError(evt) };
-websocket.onopen = function(evt) { onOpen(evt) };
+function onLoad (){
+    let wsUri = "ws://192.168.31.34:8080/APL2019/projector/projector@gmail.com";
+    let websocket = new WebSocket(wsUri);
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+    websocket.onopen = function(evt) { onOpen(evt) };
+}
 
 function onMessage(evt) {
  //@jatan evt.data consists of player data in our case
- console.log("received over websockets: " + evt.data);
- console.log("looked for room index of: "+ evt.data.indexOf("room"));
- let index = evt.data.indexOf("room");
- writeToScreen(evt.data);
-    if (index>1) {
-      console.log("found room index of: "+ evt.data.indexOf("room"));   
-      updateRoomDetails( evt.data);
-    }
+     console.log("received over websockets: " + evt.data);
+     let player = JSON.parse(evt.data);
+    document.getElementById("playerImage").src = player.photo;
+    document.getElementById("name").innerHTML = player.firstName + " " + player.lastName;
+    document.getElementById("battingSkills").value = player.battingRating;
+    document.getElementById("bowlingSkills").value = player.bowlingRating;
+    document.getElementById("fieldingSkills").value = player.fieldingRating;
+    document.getElementById("battingComments").innerHTML = player.battingComment;
+    document.getElementById("bowlingComments").innerHTML = player.bowlingComment;
+    document.getElementById("fieldingComments").innerHTML = player.fieldingComment;
 }
 
 
@@ -32,7 +35,6 @@ console.log("message --> "+message );
 }
 
 function sendText() {
-    console.log("sending text: " + JSON.parse('{ "name":"John", "age":30, "city":"New York"}'));
     websocket.send("hey");
 }
                 

@@ -10,10 +10,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="js/main.js" type="text/javascript"></script>
+<script src="js/socket.js" type="text/javascript"></script>
     
 </head>
 
-<body>
+<body onload="onLoad()">
 <div class="container">
 	<div class="row">
         
@@ -29,10 +30,10 @@
         <div class="col-sm-6">
         <div class="profile-header-container">   
     		<div class="profile-header-img">
-                <img class="img-circle" src="images/profile1.png" />
+                <img id="playerImage" class="img-circle" src="images/profile1.png" />
                 <!-- badge -->
                 <div class="rank-label-container">
-                    <span class="label label-default rank-label">Jatan Gohel</span>
+                    <span id="name" class="label label-default rank-label">Jatan Gohel</span>
                     
                 </div>
                 
@@ -45,16 +46,15 @@
         
         <div class="col-sm-6">
             <div class="skills">
-                <label>Batting Skills:</label><input type="range" name="battingSkills" min="0" max="10" value="6">
+                <label>Batting Skills:</label><input type="range" id="battingSkills" name="battingSkills" min="0" max="10" value="6">
                 <textarea id="battingComments" rows="4" cols="65" placeholder="Batting Comments"></textarea><br>
-            <label>Bowling Skills:</label><input type="range" name="bowlingSkills" min="0" max="10">
+            <label>Bowling Skills:</label><input type="range" id="bowlingSkills" name="bowlingSkills" min="0" max="10">
                  <textarea id="bowlingComments" rows="4" cols="65" placeholder="Bowling Comments"></textarea><br>
-            <label>Fielding Skills:</label><input type="range" name="fieldingSkills" min="0" max="10">
+            <label>Fielding Skills:</label><input type="range" id="fieldingSkills" name="fieldingSkills" min="0" max="10">
                  <textarea id="fieldingComments" rows="4" cols="65" placeholder="Fielding Comments"></textarea><br>
                 </div>
         </div>
 	</div>
 </div>
-    
-    </body>
+ </body>
 </html>
