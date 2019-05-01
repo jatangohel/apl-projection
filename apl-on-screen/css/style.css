@@ -1,7 +1,11 @@
 body, html {
     height: 100%;
+    background:linear-gradient(0deg,rgba(255, 206, 140,0.7),rgba(104, 104, 104,0.6)),url(../images/BGfield.jpg);
+/*    background-image: url(../images/BGfield.jpg);*/
+/*
     background-repeat: no-repeat;
     background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+*/
 }
 
 .brand-logo {
