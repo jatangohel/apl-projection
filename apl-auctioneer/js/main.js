@@ -47,13 +47,17 @@ const soldClick = async function(){
         //@Jatan figure out the binding for teamName
         jsonObject.teamName = "Griffintown Warriors";
 
+        let mainJSON = '{"player":'+JSON.stringify(jsonObject)+'}';
+
+        console.log(mainJSON);
+
         const response = await fetch("http://"+URL+"/APL2019/webapi/player/playerSold", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             credentials: 'include',
-            body: JSON.stringify(jsonObject)
+            body: mainJSON
         }).then(function(response){
             return response.json();
         });
