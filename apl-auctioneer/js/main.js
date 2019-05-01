@@ -43,7 +43,7 @@ const nextClick = async function(){
 }
 const soldClick = async function(){
     try{
-        jsonObject.cost = document.getElementById("budget").innerHTML;
+        jsonObject.cost = document.getElementById("budget").value;
         //@Jatan figure out the binding for teamName
         jsonObject.teamName = "Griffintown Warriors";
 
