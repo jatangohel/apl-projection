@@ -19,7 +19,6 @@
 <body onload="onLoad()">
 <div class="container logo-bg">
 	<div class="row">
-        
         <div class="branding">
             <center>
             <img class="brand-logo" src="images/apl-logo.png">
@@ -31,10 +30,10 @@
     </div>
     <div class="container details-bg">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-md-6">
         <div class="profile-header-container">   
     		<div class="profile-header-img">
-                <img id="playerImage" class="img-circle" src="images/profile1.png" />
+                <img id="playerImage" class="img-circle img-fluid" src="images/profile1.png" />
                 <!-- badge -->
                 <div class="rank-label-container">
                     <span id="name" class="label label-default rank-label">Jatan Gohel</span>
@@ -48,14 +47,16 @@
         </div> 
             </div>
         
-        <div class="col-sm-6">
+        <div class="col-md-6">
             <div class="skills">
-                <label>BATTING SKILLS:</label>&nbsp;&nbsp;&nbsp;<h1 id="battingSkills" class="span">6</h1> / 10
-                <textarea id="battingComments" rows="4" cols="57" placeholder="Batting Comments"></textarea><br>
-            <label>BOWLING SKILLS:</label>&nbsp;&nbsp;&nbsp;<h1 id="bowlingSkills" class="span">6</h1> / 10
-                 <textarea id="bowlingComments" rows="4" cols="57" placeholder="Bowling Comments"></textarea><br>
-            <label>FIELDING SKILLS:</label>&nbsp;&nbsp;&nbsp;<h1 id="fieldingSkills" class="span">6</h1> / 10
-                 <textarea id="fieldingComments" rows="4" cols="57" placeholder="Fielding Comments"></textarea><br>
+                <img src="images/bat.png" width="19px;"> <label>BATTING SKILLS:</label>   <h1 id="battingSkills" class="span">9</h1> / 10
+                <textarea class="form-control noresize" id="battingComments" rows="4" cols="57" placeholder="Batting Comments"></textarea><br>
+                
+                <img src="images/ball.png" width="15px;"> <label>BOWLING SKILLS:</label>   <h1 id="bowlingSkills" class="span">6</h1> / 10
+                <textarea class="form-control noresize" id="bowlingComments" rows="4" cols="57" placeholder="Bowling Comments"></textarea><br>
+                
+                <img src="images/catch.png" width="19px;"> <label>FIELDING SKILLS:</label>&nbsp;&nbsp;&nbsp;<h1 id="fieldingSkills" class="span">6</h1> / 10
+                <textarea class="form-control noresize" id="fieldingComments" rows="4" cols="57" placeholder="Fielding Comments"></textarea><br>
                 </div>
         </div>
 	</div>
