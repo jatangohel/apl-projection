@@ -3,6 +3,11 @@ background-color: pink;
     align-items: center;
 }
 
+#playerImage {
+    width: 100px;
+  height: 99px;
+  overflow: hidden; 
+}
 tr.scaffolding, .scaffolding td {
     border:none;
     padding-top:0;
@@ -12,9 +17,32 @@ tr.scaffolding, .scaffolding td {
     margin-bottom:0;
     visibility:hidden;
 }
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
 li:nth-of-type(1) {
   background: grey;
 }
 li:nth-of-type(odd) {
   background: darkgray;
+}
+
+/* HIDE RADIO */
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  outline: 10px solid red;
 }

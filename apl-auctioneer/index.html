@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><title>Welcome, APL Auctioneer</title>
+<html>
+
+<head>
+    <title>Welcome, APL Auctioneer!</title>
     <meta name="google" content="notranslate">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
@@ -12,241 +14,244 @@
 </head>
 
 <body onload="onLoad()">
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <center>
-                <h2>APL Auction</h2></center>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <center>
+                    <h2>APL Auction</h2>
+                </center>
+            </div>
         </div>
-    </div>
 
-    <div class="row profile">
-        <div class="col-sm-3">
-            <img id="playerImage" src="images/profile1.png" alt="Player Picture" class="img-fluid" width="100px">
-        </div>
-        <div class="col-sm-3">
-            <h4 id="name"></h4>
-            <form id="costForm">
+        <div class="row profile">
+            <div class="col-sm-3">
+                <img id="playerImage" src="images/profile1.png" class="img-fluid">
+            </div>
+            <div class="col-sm-3">
+                <h4 id="name">Jatan Gohel</h4>
                 <label>$</label> <input type="number" id="budget" placeholder="Enter Price">
-            </form>
-        </div>
-        <div class="col-sm-3">
-            <button id="sold-btn"  class="btn btn-danger" onclick="soldClick()">SOLD</button>
+            </div>
+            <div class="col-sm-3">
+                <button id="sold-btn" href="" class="btn btn-danger" onclick="soldClick()">SOLD</button>
 
-        </div>
-        <div class="col-sm-3">
-            <button id="next-btn"  class="btn btn-primary" onclick="nextClick()">NEXT</button>
-
-
+            </div>
+            <div class="col-sm-3">
+                <button id="next-btn" href="" class="btn btn-primary" onclick="nextClick()">NEXT</button>
+            </div>
         </div>
     </div>
 
-</div>
 
-<div class="container">
-    <div class="row">
-        <form id="team-names" class="">
 
-            <table class="table table-dark">
+    <form id="team-names" class="">
+        <div class="container">
+            <table class="table table-dark table-striped">
                 <thead>
-                <tr>
-                    <div class="col-sm-1">
-                        <th scope="col">
+                    <tr>
 
-                            <img src="images/DT.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="downtown_thunders" value="Downtown Thunders"/>
-                                    <label for="downtown_thunders">Downtown Thunders</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="downtown_thunders" name="radio" value="Downtown Thunders">
+                                    <img src="images/DT.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/GW.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="griffintown_warriors"
-                                           value="Griffintown Warriors"/>
-                                    <label for="griffintown_warriors">Griffin Warriors</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="griffintown_warriors" name="radio" value="Griffintown Warriors">
+                                    <img src="images/GW.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/LM.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="lachine_mavericks" value="Lachine Mavericks"/>
-                                    <label for="lachine_mavericks">Lachine Mavericks</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="lachine_mavericks" name="radio" value="Lachine Mavericks">
+                                    <img src="images/LM.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/LT.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="-danger">
-                                    <input type="radio" name="radio" id="laval_titans" value="Laval Titans"/>
-                                    <label for="laval_titans">Laval Titans</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="laval_titans" name="radio" value="Laval Titans">
+                                    <img src="images/LT.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/MRE.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="mont_royal_eagles" value="Mont Royal Eagles"/>
-                                    <label for="mont_royal_eagles">Mont Royal Eagles</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="mont_royal_eagles" name="radio" value="Mont Royal Eagles">
+                                    <img src="images/MRE.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/NDG.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="ndg_strikers" value="NDG Strikers"/>
-                                    <label for="ndg_strikers">NDG Strikers</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="ndg_strikers" name="radio" value="NDG Strikers">
+                                    <img src="images/NDG.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/PX.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="knight_riders" value="ParcEx Knight Riders"/>
-                                    <label for="knight_riders">ParcEx Knight Riders</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="knight_riders" name="radio" value="ParcEx Knight Riders">
+                                    <img src="images/PX.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/SSL.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="south_shore_lions" value="South Shore Lions"/>
-                                    <label for="south_shore_lions">South Shore Lions</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="south_shore_lions" name="radio" value="South Shore Lions">
+                                    <img src="images/SSL.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/TMR.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="tmr_supersonics" value="TMR Supersonics"/>
-                                    <label for="tmr_supersonics">TMR Supersonics</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="tmr_supersonics" name="radio" value="TMR Supersonics">
+                                    <img src="images/TMR.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/VV.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="verdun_vikings" value="Verdun Vikings"/>
-                                    <label for="verdun_vikings">Verdun Vikings</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="verdun_vikings" name="radio" value="Verdun Vikings">
+                                    <img src="images/VV.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/WIM.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="west_island_mustangs"
-                                           value="West Island Mustangs"/>
-                                    <label for="west_island_mustangs">West Island Mustangs</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="west_island_mustangs" name="radio" value="West Island Mustangs">
+                                    <img src="images/WIM.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
 
-                    <div class="col-sm-1">
-                        <th scope="col">
-                            <img src="images/WF.jpg" width="100vh" alt="">
-                            <div class="">
-                                <div class="">
-                                    <input type="radio" name="radio" id="westmount_fury" value="Westmount Fury"/>
-                                    <label for="westmount_fury">Westmount Fury</label>
-                                </div>
-                            </div>
-                        </th>
-                    </div>
-
-
-                </tr>
+                        <div class="col-md-1">
+                            <th scope="col">
+                                <label>
+                                    <input type="radio" id="westmount_fury" name="radio" value="Westmount Fury">
+                                    <img src="images/WF.jpg" width="100vh">
+                                </label>
+                            </th>
+                        </div>
+                    </tr>
                 </thead>
-                <tbody>
+
+
+
+
                 <tr>
                     <td>
-                        <ul style="list-style-type: none">
+                        <ul id="dt">
                             <li>Akshay Shah</li>
-                            <li>Himanshu Vaghani</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
+                            <li>Akshay Shah</li>
                         </ul>
                     </td>
                     <td>
-                        <ul style="list-style-type: none">
+                        <ul id="gw">
                             <li>Akshay Shah</li>
-                            <li>Himanshu Vaghani</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
+                            <li>Akshay Shah</li>
                         </ul>
                     </td>
                     <td>
-                        <ul style="list-style-type: none">
+                        <ul id="lm">
                             <li>Akshay Shah</li>
-                            <li>Himanshu Vaghani</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
-                            <li>Akshay Shah A Very Loing Name see what happens</li>
+                            <li>Akshay Shah</li>
                         </ul>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <ul id="lt">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="mre">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="ndg">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="px">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="ssl">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="tmr">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="vv">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="wim">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah bjkfkfkdfhsflsdhf,sdhf</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul id="wf">
+                            <li>Akshay Shah</li>
+                            <li>Akshay Shah</li>
+                        </ul>
+                    </td>
 
                 </tr>
 
-                </tbody>
-            </table>
-        </form>
 
-    </div>
-</div>
+
+
+            </table>
+        </div>
+    </form>
+
 </body>
 
 </html>
