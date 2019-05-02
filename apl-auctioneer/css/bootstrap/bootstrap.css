@@ -1782,6 +1782,9 @@ pre code {
 .table-dark td,
 .table-dark thead th {
   border-color: #454d55;
+    width: 8.3%;
+    max-width: 8.3%;
+    display: inline-block;
 }
 
 .table-dark.table-bordered {
