@@ -54,6 +54,10 @@ li:nth-of-type(odd) {
   outline: 10px solid yellow;
 }
 
+.budget {
+    font-size: 25px;
+}
+
 .rank-badge{
     margin-left: 5%;
     margin-top: -0.5%;
