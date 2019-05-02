@@ -70,7 +70,7 @@ const validateCostTeamNextBtnResponse = function () {
     if (teamName === undefined) {
         throw new Error("Select the team for the player");
     }
-    if (cost === "" || cost === 0 || isNaN(cost)) {
+    if (cost === "" || cost === 0 || isNaN(cost) || cost < 100) {
         throw new Error("Enter the cost of the player");
     }
     return {
@@ -108,22 +108,79 @@ const sendSoldPlayerRequest = async jsonData => {
 
 const sendTeamPlayerRequest = async function(){
     try{
-        await fetch("http://" + URL + "/APL2019/webapi/team/getAllTeams", {
+      const respose =   await fetch("http://" + URL + "/APL2019/webapi/team/getAllTeams", {
             method: "GET",
             credentials: 'include'
         }).then(function(response){
-            console.log(response.json());
+           // console.log(response.json());
             return response.json();
         });
+      return respose;
     }
     catch (e) {
         throw new Error(e);
     }
 };
 
+const loadTeamListData = function(team, teamListElementByID) {
+    let teamListTag = document.getElementById(teamListElementByID);
+    if (team.myTeam) {
+        team.myTeam.forEach(function (player) {
+            if(!document.getElementById(player.id)){
+                let li = document.createElement("li");
+                li.setAttribute("id", player.id);
+                li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
+                teamListTag.appendChild(li);
+            }
+        })
+    }
+};
+
 const loadAllTeamPlayerInformation = async function () {
     const teamsPlayerResponse = await sendTeamPlayerRequest();
-    console.log(JSON.parse(JSON.stringify(teamsPlayerResponse)));
+    teamsPlayerResponse.forEach(function (team) {
+            switch (team.teamName) {
+                case "Griffintown Warriors":
+                    loadTeamListData(team,"gw");
+                    break;
+                case "TMR Supersonics":
+                    loadTeamListData(team,"tmr");
+                    break;
+                case "Laval Titans":
+                    loadTeamListData(team,"lt");
+                    break;
+                case "ParcEx Knight Riders":
+                    loadTeamListData(team,"px");
+                    break;
+                case "West Island Mustangs":
+                    loadTeamListData(team,"wim");
+                    break;
+                case "Verdun Vikings":
+                    loadTeamListData(team,"vv");
+                    break;
+                case "Westmount Fury":
+                    loadTeamListData(team,"wf");
+                    break;
+                case "Lachine Mavericks":
+                    loadTeamListData(team,"lm");
+                    break;
+                case "Mont Royal Eagles":
+                    loadTeamListData(team,"mre");
+                    break;
+                case "South Shore Lions":
+                    loadTeamListData(team,"ssl");
+                    break;
+                case "Downtown Thunders":
+                    loadTeamListData(team,"dt");
+                    break;
+                case "NDG Strikers":
+                    loadTeamListData(team,"ndg");
+                    break;
+                default:
+                    break;
+
+            }
+    })
 };
 
 const soldClick = async function () {
