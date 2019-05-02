@@ -1,6 +1,6 @@
-let jsonObject;
+let jsonObject = {};
 //const URL = "192.168.31.34:8080";
-const URL = "localhost:8080";
+const URL = "172.30.155.254:8080";
 
 const onLoad = async function(){
     try {
@@ -11,10 +11,10 @@ const onLoad = async function(){
         });
         //internal server error -- handle it @jatan
         if(response.status === 500){
-            alert("OOOPS!!");
+           //    alert("OOOPS!!");
         }
     } catch(error) {
-        alert("OOOPS!!");
+        //alert("OOOPS!!");
         console.log(error);
     }
 }
@@ -41,11 +41,25 @@ const nextClick = async function(){
         console.log(error);
     }
 }
+function getRadioVal(form, name) {
+    var val;
+    // get list of radio buttons with specified name
+    var radios = form.elements[name];
+    
+    // loop through list of radio buttons
+    for (var i=0, len=radios.length; i<len; i++) {
+        if ( radios[i].checked ) { // radio checked?
+            val = radios[i].value; // if so, hold its value in val
+            break; // and break out of for loop
+        }
+    }
+    return val; // return value of checked radio or undefined if none checked
+}
 const soldClick = async function(){
     try{
         jsonObject.cost = document.getElementById("budget").value;
         //@Jatan figure out the binding for teamName
-        jsonObject.teamName = "Griffintown Warriors";
+        jsonObject.teamName = getRadioVal(document.getElementById("team-names"), 'radio');
 
         let mainJSON = '{"player":'+JSON.stringify(jsonObject)+'}';
 
@@ -66,11 +80,11 @@ const soldClick = async function(){
         //@Jatan toggle next and sold button based on this condition
         //internal server error -- handle it @jatan
         if(response.status === 500){
-            alert("OOOPS!!");
+            //alert("OOOPS!!");
         }
 
     } catch(error) {
-        alert("OOOPS!!");
+        //alert("OOOPS!!");
         console.log(error);
     }
 }
