@@ -26,17 +26,21 @@ h5 {
     text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
 }
 
+.noresize {
+  resize: none; 
+}
+
 .logo-bg {
     margin-top: 10vh;;
     padding: 10px 10px;
     background-color:black;
-    border-radius: 15px 15px 15px 15px; 
+    border-radius: 15px 15px 0px 0px; 
 }
 
 .details-bg {
     padding: 10px 10px;
     background-color:#f7f9ff;
-    border-radius:15px 15px 15px 15px;
+    border-radius:0px 0px 15px 15px;
     box-shadow: 5px 10px 18px #3A3A3A;
 }
 
@@ -47,6 +51,12 @@ h5 {
     color: aliceblue;
 }
 
+.cricket-bat {
+    background-image:  url(../images/cricket-bat.png);
+    background-repeat: no-repeat;
+    margin-left: 20px;
+    background-size: 20px;
+}
 .profile-header-container{
     margin: 0 auto;
     text-align: center;
@@ -62,8 +72,6 @@ h5 {
 }
 
 .profile-header-img > img.img-circle {
-    width: 320px;
-    height: 320px;
     border: 2px solid #51D2B7;
 }
 
