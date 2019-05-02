@@ -39,26 +39,26 @@ li:nth-of-type(odd) {
   background: darkgray;
 }
 
-[type=radio] { 
+[type="radio"] { 
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-[type=radio] + img {
+[type="radio"] + span + img {
   cursor: pointer;
 }
 
-[type=radio]:checked + img {
-  outline: 10px solid red;
+[type="radio"]:checked + span + img {
+  outline: 10px solid yellow;
 }
 
 .rank-badge{
     margin-left: 5%;
     margin-top: -0.5%;
     position: absolute;
-    background:red;
+    background:#CB0000;
     text-align: center;
     border-radius: 10px 10px 10px 10px;
     color:white;
