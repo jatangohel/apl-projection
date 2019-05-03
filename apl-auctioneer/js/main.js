@@ -65,13 +65,13 @@ const validateCostTeamNextBtnResponse = function () {
     teamName = getRadioVal(document.getElementById("team-names"), 'radio');
     cost = parseInt(document.getElementById("budget").value);
     if (jsonObject.isEmpty()) {
-        throw new Error("Next Button Response is blank;")
+        throw new Error("Next Button Response is blank.")
     }
     if (teamName === undefined) {
-        throw new Error("Select the team for the player");
+        throw new Error("Select the team for the player.");
     }
     if (cost === "" || cost === 0 || isNaN(cost) || cost < 100) {
-        throw new Error("Enter the cost of the player");
+        throw new Error("Bid Amount should not be blank and less than 100.");
     }
     return {
         teamName,
@@ -139,6 +139,12 @@ const loadTeamListData = function(team, teamListElementByID) {
 const loadAllTeamPlayerInformation = async function () {
     const teamsPlayerResponse = await sendTeamPlayerRequest();
     teamsPlayerResponse.forEach(function (team) {
+        // if in any case the name of the team changes in the backend
+        // please also change the name over here.
+        // Team names in the switch case should EXACTLY  match as that are in backend.
+        // Second parameter is the team short-hand id in the HTML because as we are following
+        // the tabular format, thus each coloumn is specifically dedicated to the respective team.
+        // altough it is little bit unconventional method to do it but it saves lot of time in rendering
             switch (team.teamName) {
                 case "Griffintown Warriors":
                     loadTeamListData(team,"gw");
@@ -200,3 +206,7 @@ const soldClick = async function () {
         //console.log(error);
     }
 };
+
+const openPreviewForAudience = function(){
+        window.open('preview.html',"_blank")
+}
