@@ -92,3 +92,22 @@ h5 {
     padding: 15px 20px 15px 20px;
     border-radius: 30px;
 }
+img#aproved{
+    position: absolute;
+    left: 15%;
+    top: 125px;
+    opacity: 0;
+}
+.stamp {
+    height: 887px;
+    width: 934px;
+    margin: 0 auto;
+    /*left: 280px;
+                  top: 144px;*/
+    top: -69px;
+    left: 214px;
+    position: absolute;
+    background-size: cover;
+    opacity: 0;
+    z-index: 25;
+}
