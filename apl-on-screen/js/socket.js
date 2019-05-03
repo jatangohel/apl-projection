@@ -2,6 +2,7 @@
 const URL = "localhost:8080";
 
 function onLoad (){
+   //doSoldOutAnimation();
     let wsUri = "ws://"+URL+"/APL2019/projector/projector@gmail.com";
     let websocket = new WebSocket(wsUri);
     websocket.onmessage = function(evt) { onMessage(evt) };
@@ -12,17 +13,20 @@ function onLoad (){
 function doSoldOutAnimation() {
     $('.stamp').fadeIn('fast');
     $('.stamp').animate({opacity:1}, 300);
-    $('.shadow_stamp').delay(200).animate({top:179}, 600);
 
-    $('.stamp').animate({ width:434, height:387, top:57, left:253}, 600, 'easeInOutExpo', function(){
+    $('.stamp').animate({ width:434, height:387, top:115, left:70}, 600, 'easeInOutExpo', function(){
         $('#aproved').css('opacity', '1');
         $(this).delay(500).animate({opacity:0, width:890, height:890, top:78, left:263}, 700, 'easeInOutExpo');
 
     });
 }
+function resetSoldAnimation(){
+    $('#aproved').css('opacity',0);
+}
 
 function onMessage(evt) {
  //@jatan evt.data consists of player data in our case
+    resetSoldAnimation();
      console.log("received over websockets: " + evt.data);
      let player = JSON.parse(evt.data);
     document.getElementById("playerImage").src = player.photo;
