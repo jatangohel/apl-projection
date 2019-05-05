@@ -2,7 +2,7 @@
 const URL = "localhost:8080";
 
 function onLoad (){
-   //doSoldOutAnimation();
+   doSoldOutAnimation();
     let wsUri = "ws://"+URL+"/APL2019/projector/projector@gmail.com";
     let websocket = new WebSocket(wsUri);
     websocket.onmessage = function(evt) { onMessage(evt) };
@@ -15,13 +15,14 @@ function doSoldOutAnimation() {
     $('.stamp').animate({opacity:1}, 300);
 
     $('.stamp').animate({ width:434, height:387, top:115, left:70}, 600, 'easeInOutExpo', function(){
-        $('#aproved').css('opacity', '1');
+        $('#aproved').css('opacity', '0.8');
         $(this).delay(500).animate({opacity:0, width:890, height:890, top:78, left:263}, 700, 'easeInOutExpo');
 
     });
 }
 function resetSoldAnimation(){
     $('#aproved').css('opacity',0);
+    
 }
 
 function onMessage(evt) {
