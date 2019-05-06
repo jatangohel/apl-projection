@@ -1,5 +1,5 @@
 let jsonObject = {};
-//const URL = "192.168.2.196:80";
+const URL = "192.168.2.196:80";
 let editPlayerObject = {};
 let defaultBudget = 16000;
 
@@ -168,7 +168,7 @@ const closeEditPlayerModal = function(){
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
 };
-const removePlayerFromList(id){
+const removePlayerFromList = function(id){
     var elem = document.getElementById(id);
  elem.parentElement.removeChild(elem);
 }
@@ -198,18 +198,18 @@ const loadTeamListData = function(team, teamListElementByID) {
     if (team.myTeam) {
         let remainingBudget = defaultBudget;
         team.myTeam.forEach(function (player) {
-            if(!document.getElementById(player.id)){
+            remainingBudget -= player.cost;
+            if(!document.getElementById(player._id)){
                 let li = document.createElement("li");
-                li.setAttribute("id", player.id);
+                li.setAttribute("id", player._id);
                 li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
-                li.onclick = function(){ openEditPlayerModal(player,team)};
-                remainingBudget -= player.cost;
+                li.onclick = function(){ openEditPlayerModal(player,team)};                
                 teamListTag.appendChild(li);
             }
         });
-        document.getElementById('rb'+teamListElementByID).value = remainingBudget;
+        document.getElementById('rb-'+teamListElementByID).value = remainingBudget;
         document.getElementById('mb-'+teamListElementByID).value =
-            team.myTeam.length === 11 ? 0 : remainingBudget - ((( 11 - team.myTeam.length) - 1) * 100)
+            team.myTeam.length === 11 ? 0 : remainingBudget - ((( 8 - (team.myTeam.length - 3)) - 1) * 100)
     }
 };
 

@@ -1,9 +1,9 @@
-//const URL = "192.168.31.34:8080"
-const URL = "localhost:8080";
+const URL = "192.168.21.87:80"
+//const URL = "localhost:8080";
 
 function onLoad (){
-   doSoldOutAnimation();
-    let wsUri = "ws://"+URL+"/APL2019/projector/projector@gmail.com";
+   //doSoldOutAnimation();
+    let wsUri = "ws://"+URL+"/APL2019/projector/goyanibhavik369@gmail.com";
     let websocket = new WebSocket(wsUri);
     websocket.onmessage = function(evt) { onMessage(evt) };
     websocket.onerror = function(evt) { onError(evt) };
