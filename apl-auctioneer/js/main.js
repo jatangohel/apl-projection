@@ -1,9 +1,11 @@
 let jsonObject = {};
-const URL = "localhost:8080";
+//const URL = "192.168.2.196:80";
+let editPlayerObject = {};
+let defaultBudget = 16000;
 
 const onLoad = async function () {
     try {
-        const response = await fetch("http://" + URL + "/APL2019/webapi/logger/login?email=akashshah.shah3@gmail.com&password=1234", {
+        const response = await fetch("http://" + URL + "/APL2019/webapi/logger/login?email=goyanibhavik369@gmail.com&password=1234", {
             method: "GET",
             credentials: 'include'
         });
@@ -16,6 +18,7 @@ const onLoad = async function () {
         console.log("Error in onLoad Function: \n " + error);
     }
 };
+
 const nextClick = async function () {
     try {
         const response = await fetch("http://" + URL + "/APL2019/webapi/player/getNextPlayer", {
@@ -38,6 +41,7 @@ const nextClick = async function () {
         console.log("Error in nextClick Function: \n " + error);
     }
 };
+
 const getRadioVal = function (form, name) {
     let val;
     // get list of radio buttons with specified name
@@ -52,6 +56,7 @@ const getRadioVal = function (form, name) {
     }
     return val; // return value of checked radio or undefined if none checked
 };
+
 Object.prototype.isEmpty = function () {
     for (let key in this) {
         if (this.hasOwnProperty(key))
@@ -59,6 +64,7 @@ Object.prototype.isEmpty = function () {
     }
     return true;
 };
+
 const validateCostTeamNextBtnResponse = function () {
     let teamName;
     let cost;
@@ -71,6 +77,23 @@ const validateCostTeamNextBtnResponse = function () {
         throw new Error("Select the team for the player.");
     }
     if (cost === "" || cost === 0 || isNaN(cost) || cost < 100) {
+        throw new Error("Bid Amount should not be blank and less than 100.");
+    }
+    return {
+        teamName,
+        cost
+    };
+};
+
+const validateEditPlayerData = function () {
+    let teamName;
+    let cost;
+    teamName = document.getElementById('editedTeamName').value;
+    cost = parseInt(document.getElementById("editPrice").value);
+    if (teamName === undefined) {
+        throw new Error("Select the team for the player.");
+    }
+    if (cost === "" || cost === 0 || isNaN(cost) || cost < 100 ) {
         throw new Error("Bid Amount should not be blank and less than 100.");
     }
     return {
@@ -122,17 +145,71 @@ const sendTeamPlayerRequest = async function(){
     }
 };
 
+const createEditPlayerData = function(player){
+    const validatedCostAndTeam = validateEditPlayerData();
+    player.cost = validatedCostAndTeam.cost;
+    player.teamName = validatedCostAndTeam.teamName;
+    player.isEdit = true;
+    return player;
+};
+
+const openEditPlayerModal = function(player,team){
+    // Get the modal
+    var modal = document.getElementById('myModal');
+    modal.style.display = "block";
+    document.getElementById('editPrice').value = player.cost;
+    document.getElementById('editName').innerHTML = player.firstName + " "+ player.lastName;
+   // $("select option[value='"+team.teamName+"']").attr("selected","selected");
+    editPlayerObject = player;
+    console.log(player.firstName);
+};
+
+const closeEditPlayerModal = function(){
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+};
+const removePlayerFromList(id){
+    var elem = document.getElementById(id);
+ elem.parentElement.removeChild(elem);
+}
+const editPlayer = async function(){
+    event.preventDefault();
+   
+    try {
+         const jsonData = createEditPlayerData(editPlayerObject);
+        const hasPlayerSold = await sendSoldPlayerRequest(jsonData);
+        if (hasPlayerSold) {
+            // console.log("entered");
+            alert("Player Information edited Successfully");
+            closeEditPlayerModal();
+            removePlayerFromList(jsonData.id);
+            loadAllTeamPlayerInformation();
+
+        }
+    } catch (error) {
+        alert(error);
+        //console.log(error);
+    }
+};
+
+
 const loadTeamListData = function(team, teamListElementByID) {
     let teamListTag = document.getElementById(teamListElementByID);
     if (team.myTeam) {
+        let remainingBudget = defaultBudget;
         team.myTeam.forEach(function (player) {
             if(!document.getElementById(player.id)){
                 let li = document.createElement("li");
                 li.setAttribute("id", player.id);
                 li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
+                li.onclick = function(){ openEditPlayerModal(player,team)};
+                remainingBudget -= player.cost;
                 teamListTag.appendChild(li);
             }
-        })
+        });
+        document.getElementById('rb'+teamListElementByID).value = remainingBudget;
+        document.getElementById('mb-'+teamListElementByID).value =
+            team.myTeam.length === 11 ? 0 : remainingBudget - ((( 11 - team.myTeam.length) - 1) * 100)
     }
 };
 
