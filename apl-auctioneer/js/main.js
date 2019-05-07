@@ -1,5 +1,5 @@
 let jsonObject = {};
-const URL = "192.168.2.196:80";
+const URL = "192.168.31.53:8080";
 let editPlayerObject = {};
 let defaultBudget = 16000;
 
@@ -17,6 +17,9 @@ const onLoad = async function () {
     } catch (error) {
         console.log("Error in onLoad Function: \n " + error);
     }
+    document.getElementById("sold-btn").disabled = true;
+
+
 };
 
 const nextClick = async function () {
@@ -24,7 +27,7 @@ const nextClick = async function () {
         const response = await fetch("http://" + URL + "/APL2019/webapi/player/getNextPlayer", {
             method: "GET",
             credentials: 'include'
-        }).then(function(response){
+        }).then(function (response) {
             return response.json();
         });
         //console.log(JSON.stringify(response));
@@ -40,6 +43,8 @@ const nextClick = async function () {
     } catch (error) {
         console.log("Error in nextClick Function: \n " + error);
     }
+    document.getElementById("next-btn").disabled = true;
+    document.getElementById("sold-btn").disabled = false;
 };
 
 const getRadioVal = function (form, name) {
@@ -79,6 +84,8 @@ const validateCostTeamNextBtnResponse = function () {
     if (cost === "" || cost === 0 || isNaN(cost) || cost < 100) {
         throw new Error("Bid Amount should not be blank and less than 100.");
     }
+    document.getElementById("sold-btn").disabled = true;
+
     return {
         teamName,
         cost
@@ -93,7 +100,7 @@ const validateEditPlayerData = function () {
     if (teamName === undefined) {
         throw new Error("Select the team for the player.");
     }
-    if (cost === "" || cost === 0 || isNaN(cost) || cost < 100 ) {
+    if (cost === "" || cost === 0 || isNaN(cost) || cost < 100) {
         throw new Error("Bid Amount should not be blank and less than 100.");
     }
     return {
@@ -129,23 +136,22 @@ const sendSoldPlayerRequest = async jsonData => {
     }
 };
 
-const sendTeamPlayerRequest = async function(){
-    try{
-      const respose =   await fetch("http://" + URL + "/APL2019/webapi/team/getAllTeams", {
+const sendTeamPlayerRequest = async function () {
+    try {
+        const respose = await fetch("http://" + URL + "/APL2019/webapi/team/getAllTeams", {
             method: "GET",
             credentials: 'include'
-        }).then(function(response){
-           // console.log(response.json());
+        }).then(function (response) {
+            // console.log(response.json());
             return response.json();
         });
-      return respose;
-    }
-    catch (e) {
+        return respose;
+    } catch (e) {
         throw new Error(e);
     }
 };
 
-const createEditPlayerData = function(player){
+const createEditPlayerData = function (player) {
     const validatedCostAndTeam = validateEditPlayerData();
     player.cost = validatedCostAndTeam.cost;
     player.teamName = validatedCostAndTeam.teamName;
@@ -153,35 +159,38 @@ const createEditPlayerData = function(player){
     return player;
 };
 
-const openEditPlayerModal = function(player,team){
+const openEditPlayerModal = function (player, team) {
     // Get the modal
     var modal = document.getElementById('myModal');
     modal.style.display = "block";
     document.getElementById('editPrice').value = player.cost;
-    document.getElementById('editName').innerHTML = player.firstName + " "+ player.lastName;
-   // $("select option[value='"+team.teamName+"']").attr("selected","selected");
+    document.getElementById('editName').innerHTML = player.firstName + " " + player.lastName;
+    // $("select option[value='"+team.teamName+"']").attr("selected","selected");
     editPlayerObject = player;
     console.log(player.firstName);
 };
 
-const closeEditPlayerModal = function(){
-    var modal = document.getElementById('myModal');
+const closeEditPlayerModal = function () {
+    let modal = document.getElementById('myModal');
     modal.style.display = "none";
 };
-const removePlayerFromList = function(id){
-    var elem = document.getElementById(id);
- elem.parentElement.removeChild(elem);
-}
-const editPlayer = async function(){
+
+const removePlayerFromList = function (id) {
+    let elem = document.getElementById(id);
+    elem.parentElement.removeChild(elem);
+};
+
+const editPlayer = async function () {
     event.preventDefault();
-   
+
     try {
-         const jsonData = createEditPlayerData(editPlayerObject);
+        const jsonData = createEditPlayerData(editPlayerObject);
         const hasPlayerSold = await sendSoldPlayerRequest(jsonData);
         if (hasPlayerSold) {
             // console.log("entered");
             alert("Player Information edited Successfully");
             closeEditPlayerModal();
+            console.log(jsonData.id);
             removePlayerFromList(jsonData.id);
             loadAllTeamPlayerInformation();
 
@@ -192,24 +201,29 @@ const editPlayer = async function(){
     }
 };
 
-
-const loadTeamListData = function(team, teamListElementByID) {
+const loadTeamListData = function (team, teamListElementByID) {
     let teamListTag = document.getElementById(teamListElementByID);
     if (team.myTeam) {
         let remainingBudget = defaultBudget;
         team.myTeam.forEach(function (player) {
             remainingBudget -= player.cost;
-            if(!document.getElementById(player._id)){
+            if (!document.getElementById(player._id)) {
                 let li = document.createElement("li");
                 li.setAttribute("id", player._id);
                 li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
-                li.onclick = function(){ openEditPlayerModal(player,team)};                
+                console.log(player.firstName + " " + player.lastName);
+                console.log(![team.associatedCaptain, team.captain, team.viceCaptain].includes(player._id));
+                if(![team.associatedCaptain, team.captain, team.viceCaptain].includes(player._id)){
+                    li.onclick = function () {
+                        openEditPlayerModal(player, team)
+                    };
+                }
                 teamListTag.appendChild(li);
             }
         });
-        document.getElementById('rb-'+teamListElementByID).value = remainingBudget;
-        document.getElementById('mb-'+teamListElementByID).value =
-            team.myTeam.length === 11 ? 0 : remainingBudget - ((( 8 - (team.myTeam.length - 3)) - 1) * 100)
+        document.getElementById('rb-' + teamListElementByID).value = remainingBudget;
+        document.getElementById('mb-' + teamListElementByID).value =
+            team.myTeam.length === 11 ? 0 : remainingBudget - (((8 - (team.myTeam.length - 3)) - 1) * 100)
     }
 };
 
@@ -222,47 +236,47 @@ const loadAllTeamPlayerInformation = async function () {
         // Second parameter is the team short-hand id in the HTML because as we are following
         // the tabular format, thus each coloumn is specifically dedicated to the respective team.
         // altough it is little bit unconventional method to do it but it saves lot of time in rendering
-            switch (team.teamName) {
-                case "Griffintown Warriors":
-                    loadTeamListData(team,"gw");
-                    break;
-                case "TMR Supersonics":
-                    loadTeamListData(team,"tmr");
-                    break;
-                case "Laval Titans":
-                    loadTeamListData(team,"lt");
-                    break;
-                case "ParcEx Knight Riders":
-                    loadTeamListData(team,"px");
-                    break;
-                case "West Island Mustangs":
-                    loadTeamListData(team,"wim");
-                    break;
-                case "Verdun Vikings":
-                    loadTeamListData(team,"vv");
-                    break;
-                case "Westmount Fury":
-                    loadTeamListData(team,"wf");
-                    break;
-                case "Lachine Mavericks":
-                    loadTeamListData(team,"lm");
-                    break;
-                case "Mont Royal Eagles":
-                    loadTeamListData(team,"mre");
-                    break;
-                case "South Shore Lions":
-                    loadTeamListData(team,"ssl");
-                    break;
-                case "Downtown Thunders":
-                    loadTeamListData(team,"dt");
-                    break;
-                case "NDG Strikers":
-                    loadTeamListData(team,"ndg");
-                    break;
-                default:
-                    break;
+        switch (team.teamName) {
+            case "Griffintown Warriors":
+                loadTeamListData(team, "gw");
+                break;
+            case "TMR Supersonics":
+                loadTeamListData(team, "tmr");
+                break;
+            case "Laval Titans":
+                loadTeamListData(team, "lt");
+                break;
+            case "ParcEx Knight Riders":
+                loadTeamListData(team, "px");
+                break;
+            case "West Island Mustangs":
+                loadTeamListData(team, "wim");
+                break;
+            case "Verdun Vikings":
+                loadTeamListData(team, "vv");
+                break;
+            case "Westmount Fury":
+                loadTeamListData(team, "wf");
+                break;
+            case "Lachine Mavericks":
+                loadTeamListData(team, "lm");
+                break;
+            case "Mont Royal Eagles":
+                loadTeamListData(team, "mre");
+                break;
+            case "South Shore Lions":
+                loadTeamListData(team, "ssl");
+                break;
+            case "Downtown Thunders":
+                loadTeamListData(team, "dt");
+                break;
+            case "NDG Strikers":
+                loadTeamListData(team, "ndg");
+                break;
+            default:
+                break;
 
-            }
+        }
     })
 };
 
@@ -282,8 +296,10 @@ const soldClick = async function () {
         alert(error);
         //console.log(error);
     }
+
+    document.getElementById("next-btn").disabled = false;
 };
 
-const openPreviewForAudience = function(){
-        window.open('preview.html',"_blank")
-}
+const openPreviewForAudience = function () {
+    window.open('preview.html', "_blank")
+};
