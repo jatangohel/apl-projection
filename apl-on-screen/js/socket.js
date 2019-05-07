@@ -1,5 +1,5 @@
-const URL = "192.168.21.87:80"
-//const URL = "localhost:8080";
+//const URL = "192.168.21.87:80";
+const URL = "localhost:8080";
 
 function onLoad (){
    //doSoldOutAnimation();
@@ -30,17 +30,45 @@ function onMessage(evt) {
     resetSoldAnimation();
      console.log("received over websockets: " + evt.data);
      let player = JSON.parse(evt.data);
-    document.getElementById("playerImage").src = player.photo;
-    document.getElementById("name").innerHTML = player.firstName + " " + player.lastName;
-    document.getElementById("battingSkills").innerHTML = player.battingRating;
-    document.getElementById("bowlingSkills").innerHTML = player.bowlingRating;
-    document.getElementById("fieldingSkills").innerHTML = player.fieldingRating;
-    document.getElementById("battingComments").innerHTML = player.battingComment;
-    document.getElementById("bowlingComments").innerHTML = player.bowlingComment;
-    document.getElementById("fieldingComments").innerHTML = player.fieldingComment;
+     if(!player.isBlind){
+         document.getElementById("playerImage").src = player.photo;
+         document.getElementById("name").innerHTML = player.firstName + " " + player.lastName;
+         document.getElementById("battingSkills").innerHTML = player.battingRating;
+         document.getElementById("bowlingSkills").innerHTML = player.bowlingRating;
+         document.getElementById("fieldingSkills").innerHTML = player.fieldingRating;
+         document.getElementById("battingComments").innerHTML = player.battingComment;
+         document.getElementById("bowlingComments").innerHTML = player.bowlingComment;
+         document.getElementById("fieldingComments").innerHTML = player.fieldingComment;
+     }
+     else{
+         document.getElementById("playerImage").src = "images/profile1.png";
+         document.getElementById("name").innerHTML = "Blind Player";
+         document.getElementById("battingSkills").innerHTML = " ";
+         document.getElementById("bowlingSkills").innerHTML = " ";
+         document.getElementById("fieldingSkills").innerHTML =" ";
+         document.getElementById("battingComments").innerHTML = " ";
+         document.getElementById("bowlingComments").innerHTML = " ";
+         document.getElementById("fieldingComments").innerHTML = " ";
+     }
+
 
     if(player.teamName){
-        doSoldOutAnimation();
+        if(player.isBlind){
+            document.getElementById("playerImage").src = player.photo;
+            document.getElementById("name").innerHTML = player.firstName + " " + player.lastName;
+            document.getElementById("battingSkills").innerHTML = player.battingRating;
+            document.getElementById("bowlingSkills").innerHTML = player.bowlingRating;
+            document.getElementById("fieldingSkills").innerHTML = player.fieldingRating;
+            document.getElementById("battingComments").innerHTML = player.battingComment;
+            document.getElementById("bowlingComments").innerHTML = player.bowlingComment;
+            document.getElementById("fieldingComments").innerHTML = player.fieldingComment;
+            window.setTimeout(doSoldOutAnimation, 3000);
+        }
+        else{
+            doSoldOutAnimation();
+        }
+
+
     }
 }
 
