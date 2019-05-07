@@ -104,7 +104,7 @@
 
                         <th scope="col">
                             <label>
-                                <input type="radio" id="downtown_thunders" name="radio" value="Downtown Thunders">
+                                <input type="radio" id="downtown_thunders" name="radio" value="Downtown Thunders" >
                                 <img src="images/DT.jpg" width="100vh">
                                 <h6 class="text-center">Downtown Thunders</h6>
                                 <input type="text" id="rb-dt" size="12px;" placeholder="$" readonly>
@@ -309,38 +309,34 @@
         </div>
     </form>
     
-                                <div id="myModal" class="modal">
-                                <div class="modal-content">
-                                    <span class="close" onclick="closeEditPlayerModal()">&times;</span>
-                                    <form id="editForm"><br>
-                                        <h4 id="editName" class="editName"></h4>
-                                        <label for="editPrice">Updated Price:</label>
-                                        <input type="number" class="form-control" id="editPrice" size="5"><br>
+        <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditPlayerModal()">&times;</span>
+            <form id="editForm"><br>
+                <h4 id="editName" class="editName"></h4>
+                <label for="editPrice">Updated Price:</label>
+                <input type="number" class="form-control" id="editPrice" size="5"><br>
 
-                                        <select class="form-control" id="editedTeamName">
-                                            <option value="Downtown Thunders">Downtown Thunders</option>
-                                            <option value="Griffintown Warriors">Griffintown Warriors</option>
-                                            <option value="Lachine Mavericks">Lachine Mavericks</option>
-                                            <option value="Laval Titans">Laval Titans</option>
-                                            <option value="Mont Royal Eagles">Mont Royal Eagles</option>
-                                            <option value="NDG Strikers">NDG Strikers</option>
-                                            <option value="South Shore Lions">South Shore Lions</option>
-                                            <option value="TMR Supersonics">TMR Supersonics</option>
-                                            <option value="Verdun Vikings">Verdun Vikings</option>
-                                            <option value="West Island Mustangs">West Island Mustangs</option>
-                                            <option value="Westmount Fury">Westmount Fury</option>
-                                        </select><br>
+                <select class="form-control" id="editedTeamName">
+                    <option value="Downtown Thunders">Downtown Thunders</option>
+                    <option value="Griffintown Warriors">Griffintown Warriors</option>
+                    <option value="Lachine Mavericks">Lachine Mavericks</option>
+                    <option value="Laval Titans">Laval Titans</option>
+                    <option value="Mont Royal Eagles">Mont Royal Eagles</option>
+                    <option value="NDG Strikers">NDG Strikers</option>
+                    <option value="South Shore Lions">South Shore Lions</option>
+                    <option value="TMR Supersonics">TMR Supersonics</option>
+                    <option value="Verdun Vikings">Verdun Vikings</option>
+                    <option value="West Island Mustangs">West Island Mustangs</option>
+                    <option value="Westmount Fury">Westmount Fury</option>
+                </select><br>
 
-                                        <button class="btn btn-success" id="editOkay" onclick="editPlayer(event);">Confirm</button>
+                <button class="btn btn-success" id="editOkay" onclick="editPlayer(event);">Confirm</button>
 <!--                                        <button class="btn btn-danger" class="close" id="editClose">Cancel</button>-->
-                                        
-                                    </form>
-                                </div>
-                            </div>
-
-
-
-
+                
+            </form>
+        </div>
+    </div>
 
     <script>
         // Get the modal
@@ -350,7 +346,12 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+            function myFunction() 
+        {
+            document.getElementById("next-btn").disabled = true;
+            }
         }
+        
     </script>
 
 </body>
