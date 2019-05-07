@@ -11,217 +11,329 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/main.js" type="text/javascript"></script>
 
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body onload="onLoad()">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                    <h2 align="center">APL Auction 2019</h2>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h2 align="center">APL Auction</h2>
         </div>
     </div>
 
-
-
-    <form id="team-names" class="">
-        <div class="container">
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-
-                       
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="downtown_thunders" name="radio" value="Downtown Thunders" disabled>
-                                    <span class="rank-badge" id="rank-dt">2</span>
-                                    <img src="images/DT.jpg" width="100vh">
-                                    <h6 class="text-center">Downtown Thunders</h6>
-                                </label>
-                            </th>
-                 
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="griffintown_warriors" name="radio" value="Griffintown Warriors" disabled>
-                                    <span class="rank-badge" id="rank-gw">2</span>
-                                    <img src="images/GW.jpg" width="100vh">
-                                    <h6 class="text-center">Griffintown Warriors</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="lachine_mavericks" name="radio" value="Lachine Mavericks" disabled>
-                                    <span class="rank-badge" id="rank-lm">2</span>
-                                    <img src="images/LM.jpg" width="100vh">
-                                    <h6 class="text-center">Lachine<br>Mavericks</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="laval_titans" name="radio" value="Laval Titans" disabled>
-                                    <span class="rank-badge" id="rank-lt">2</span>
-                                    <img src="images/LT.jpg" width="100vh">
-                                    <h6 class="text-center">Laval<br>Titans</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="mont_royal_eagles" name="radio" value="Mont Royal Eagles" disabled>
-                                    <span class="rank-badge" id="rank-mre">2</span>
-                                    <img src="images/MRE.jpg" width="100vh">
-                                    <h6 class="text-center">Mont Royal<br>Eagles</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="ndg_strikers" name="radio" value="NDG Strikers" disabled>
-                                    <span class="rank-badge" id="rank-ndg">2</span>
-                                    <img src="images/NDG.jpg" width="100vh">
-                                    <h6 class="text-center">NDG<br>Strikers</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="knight_riders" name="radio" value="ParcEx Knight Riders" disabled>
-                                    <span class="rank-badge" id="rank-px">2</span>
-                                    <img src="images/PX.jpg" width="100vh">
-                                    <h6 class="text-center">ParcEx Knight Riders</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="south_shore_lions" name="radio" value="South Shore Lions" disabled>
-                                    <span class="rank-badge" id="rank-ssl">3</span>
-                                    <img src="images/SSL.jpg" width="100vh">
-                                    <h6 class="text-center">South Shore<br>Lions</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="tmr_supersonics" name="radio" value="TMR Supersonics" disabled>
-                                    <span class="rank-badge" id="rank-tmr">2</span>
-                                    <img src="images/TMR.jpg" width="100vh">
-                                    <h6 class="text-center">TMR<br>Supersonics</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="verdun_vikings" name="radio" value="Verdun Vikings" disabled>
-                                    <span class="rank-badge" id="rank-vv">1</span>
-                                    <img src="images/VV.jpg" width="100vh">
-                                    <h6 class="text-center">Verdun<br>Vikings</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="west_island_mustangs" name="radio" value="West Island Mustangs" disabled>
-                                    <span class="rank-badge" id="rank-wim">3</span>
-                                    <img src="images/WIM.jpg" width="100vh">
-                                    <h6 class="text-center">West Island Mustangs</h6>
-                                </label>
-                            </th>
-                      
-
-                        
-                            <th scope="col">
-                                <label>
-                                    <input type="radio" id="westmount_fury" name="radio" value="Westmount Fury" disabled>
-                                    <span class="rank-badge" id="rank-wf">1</span>
-                                    <img src="images/WF.jpg" width="100vh">
-                                    <h6 class="text-center">Westmount<br>Fury</h6>
-                                </label>
-                            </th>
-                      
-                    </tr>
-                </thead>
-
-
-
-
-                <tr>
-                    <td>
-                        <ul id="dt">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="gw">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="lm">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="lt">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="mre">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="ndg">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="px">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="ssl">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="vv">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="wim">
-                        </ul>
-                    </td>
-                    <td>
-                        <ul id="wf">
-                        </ul>
-                    </td>
-
-                </tr>
-
-
-
-
-            </table>
+    <div class="row profile" style="display: none">
+        <div class="col-sm-3">
+            <img id="playerImage" src="images/profile1.png" class="img-fluid">
         </div>
-    </form>
+        <div class="col-sm-3">
+            <h4 id="name"></h4>
+            <form id="costForm">
+                <label class="budget">$</label> <input type="number" class="budget" id="budget"
+                                                       placeholder="Enter Price"></form>
+        </div>
+        <div class="col-sm-2">
+            <button id="sold-btn" href="" class="btn btn-danger" onclick="soldClick()">SOLD</button>
 
+        </div>
+        <div class="col-sm-2">
+            <button id="next-btn" href="" class="btn btn-primary" onclick="nextClick()">NEXT</button>
+        </div>
+        <div class="col-sm-2">
+            <button id="preview-btn" href="" class="btn btn-success" onclick="openPreviewForAudience()">PREVIEW</button>
+        </div>
+    </div>
+</div>
+
+
+<form id="team-names" class="">
+    <div class="container">
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="downtown_thunders" name="radio" value="Downtown Thunders">
+                        <span class="rank-badge" id="rank-dt"></span>
+                        <img src="images/DT.jpg" width="100vh">
+                        <h6 class="text-center">Downtown Thunders</h6>
+                        <input type="text" id="rb-dt" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-dt" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="griffintown_warriors" name="radio" value="Griffintown Warriors">
+                        <span class="rank-badge" id="rank-gw"></span>
+                        <img src="images/GW.jpg" width="100vh">
+                        <h6 class="text-center">Griffintown Warriors</h6>
+                        <input type="text" id="rb-gw" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-gw" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="lachine_mavericks" name="radio" value="Lachine Mavericks">
+                        <span class="rank-badge" id="rank-lm"></span>
+                        <img src="images/LM.jpg" width="100vh">
+                        <h6 class="text-center">Lachine<br>Mavericks</h6>
+                        <input type="text" id="rb-lm" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-lm" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="laval_titans" name="radio" value="Laval Titans">
+                        <span class="rank-badge" id="rank-lt"></span>
+                        <img src="images/LT.jpg" width="100vh">
+                        <h6 class="text-center">Laval<br>Titans</h6>
+                        <input type="text" id="rb-lt" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-lt" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="mont_royal_eagles" name="radio" value="Mont Royal Eagles">
+                        <span class="rank-badge" id="rank-mre"></span>
+                        <img src="images/MRE.jpg" width="100vh">
+                        <h6 class="text-center">Mont Royal<br>Eagles</h6>
+                        <input type="text" id="rb-mre" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-mre" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="ndg_strikers" name="radio" value="NDG Strikers">
+                        <span class="rank-badge" id="rank-ndg"></span>
+                        <img src="images/NDG.jpg" width="100vh">
+                        <h6 class="text-center">NDG<br>Strikers</h6>
+                        <input type="text" id="rb-ndg" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-ndg" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="knight_riders" name="radio" value="ParcEx Knight Riders">
+                        <span class="rank-badge" id="rank-px"></span>
+                        <img src="images/PX.jpg" width="100vh">
+                        <h6 class="text-center">ParcEx Knight Riders</h6>
+                        <input type="text" id="rb-px" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-px" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="south_shore_lions" name="radio" value="South Shore Lions">
+                        <span class="rank-badge" id="rank-ssl"></span>
+                        <img src="images/SSL.jpg" width="100vh">
+                        <h6 class="text-center">South Shore<br>Lions</h6>
+                        <input type="text" id="rb-ssl" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-ssl" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="tmr_supersonics" name="radio" value="TMR Supersonics">
+                        <span class="rank-badge" id="rank-tmr"></span>
+                        <img src="images/TMR.jpg" width="100vh">
+                        <h6 class="text-center">TMR<br>Supersonics</h6>
+                        <input type="text" id="rb-tmr" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-tmr" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="verdun_vikings" name="radio" value="Verdun Vikings">
+                        <span class="rank-badge" id="rank-vv"></span>
+                        <img src="images/VV.jpg" width="100vh">
+                        <h6 class="text-center">Verdun<br>Vikings</h6>
+                        <input type="text" id="rb-vv" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-vv" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="west_island_mustangs" name="radio" value="West Island Mustangs">
+                        <span class="rank-badge" id="rank-wim"></span>
+                        <img src="images/WIM.jpg" width="100vh">
+                        <h6 class="text-center">West Island Mustangs</h6>
+                        <input type="text" id="rb-wim" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-wim" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+
+                <th scope="col">
+                    <label>
+                        <input type="radio" id="westmount_fury" name="radio" value="Westmount Fury">
+                        <span class="rank-badge" id="rank-wf"></span>
+                        <img src="images/WF.jpg" width="100vh">
+                        <h6 class="text-center">Westmount<br>Fury</h6>
+                        <input type="text" id="rb-wf" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                        <input type="text" id="mb-wf" size="12px;" placeholder="$" readonly class="previewDisPlayNone">
+                    </label>
+                </th>
+
+            </tr>
+            </thead>
+
+
+            <tr>
+                <td>
+                    <ul id="dt">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="gw">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="lm">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="lt">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="mre">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="ndg">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="px">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="ssl">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="tmr">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="vv">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="wim">
+                    </ul>
+                </td>
+                <td>
+                    <ul id="wf">
+                    </ul>
+                </td>
+
+            </tr>
+
+
+        </table>
+    </div>
+</form>
+
+<div id="myModal" class="modal" >
+    <div class="modal-content">
+        <span class="close" onclick="closeEditPlayerModal()">&times;</span>
+        <form id="editForm"><br>
+            <h4 id="editName" class="editName"></h4>
+            <label for="editPrice">Updated Price:</label>
+            <input type="number" class="form-control" id="editPrice" size="5"><br>
+
+            <select class="form-control" id="editedTeamName">
+                <option value="Downtown Thunders">Downtown Thunders</option>
+                <option value="Griffintown Warriors">Griffintown Warriors</option>
+                <option value="Lachine Mavericks">Lachine Mavericks</option>
+                <option value="Laval Titans">Laval Titans</option>
+                <option value="Mont Royal Eagles">Mont Royal Eagles</option>
+                <option value="NDG Strikers">NDG Strikers</option>
+                <option value="South Shore Lions">South Shore Lions</option>
+                <option value="TMR Supersonics">TMR Supersonics</option>
+                <option value="Verdun Vikings">Verdun Vikings</option>
+                <option value="West Island Mustangs">West Island Mustangs</option>
+                <option value="Westmount Fury">Westmount Fury</option>
+            </select><br>
+
+            <button class="btn btn-success" id="editOkay" onclick="editPlayer(event);">Confirm</button>
+            <!--                                        <button class="btn btn-danger" class="close" id="editClose">Cancel</button>-->
+
+        </form>
+    </div>
+</div>
 </body>
 
 </html>

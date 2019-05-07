@@ -1,5 +1,4 @@
 .profile {
-background-color: pink;
     align-items: center;
 }
 
@@ -30,13 +29,16 @@ ul {
     padding: 0;
     list-style-type: none;
 }
-
+li{
+    padding-left: 5px;
+}
 li:nth-of-type(even) {
-  background:#191919;
+  background:black;
+
 }
 
 li:nth-of-type(odd) {
-  background: darkgray;
+  background: black;
 }
 
 [type="radio"] { 
@@ -46,12 +48,12 @@ li:nth-of-type(odd) {
   height: 0;
 }
 
-[type="radio"] + img {
+[type="radio"] + span + img {
   cursor: pointer;
 }
 
-[type="radio"]:checked + img {
-  outline: 10px solid yellow;
+[type="radio"]:checked + span + img {
+  outline: 3px solid yellow;
 }
 
 .budget {
@@ -121,4 +123,14 @@ li:nth-of-type(odd) {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+li:hover{
+    cursor: pointer;
+}
+label{
+    text-align: center;
+}
+.previewDisPlayNone {
+    display: none;
 }

@@ -161,13 +161,12 @@ const createEditPlayerData = function (player) {
 
 const openEditPlayerModal = function (player, team) {
     // Get the modal
-    var modal = document.getElementById('myModal');
+    let modal = document.getElementById('myModal');
     modal.style.display = "block";
     document.getElementById('editPrice').value = player.cost;
     document.getElementById('editName').innerHTML = player.firstName + " " + player.lastName;
     // $("select option[value='"+team.teamName+"']").attr("selected","selected");
     editPlayerObject = player;
-    console.log(player.firstName);
 };
 
 const closeEditPlayerModal = function () {
@@ -190,8 +189,7 @@ const editPlayer = async function () {
             // console.log("entered");
             alert("Player Information edited Successfully");
             closeEditPlayerModal();
-            console.log(jsonData.id);
-            removePlayerFromList(jsonData.id);
+            removePlayerFromList(jsonData._id);
             loadAllTeamPlayerInformation();
 
         }
@@ -205,25 +203,26 @@ const loadTeamListData = function (team, teamListElementByID) {
     let teamListTag = document.getElementById(teamListElementByID);
     if (team.myTeam) {
         let remainingBudget = defaultBudget;
-        team.myTeam.forEach(function (player) {
+        team.myTeam.forEach(function (player, i) {
             remainingBudget -= player.cost;
             if (!document.getElementById(player._id)) {
                 let li = document.createElement("li");
                 li.setAttribute("id", player._id);
-                li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
-                console.log(player.firstName + " " + player.lastName);
-                console.log(![team.associatedCaptain, team.captain, team.viceCaptain].includes(player._id));
-                if(![team.associatedCaptain, team.captain, team.viceCaptain].includes(player._id)){
+               // li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
+                li.appendChild(document.createTextNode("\u2022" + " "+player.firstName + " " + player.lastName));
+                if(!player.role){
                     li.onclick = function () {
                         openEditPlayerModal(player, team)
                     };
                 }
+
                 teamListTag.appendChild(li);
             }
         });
         document.getElementById('rb-' + teamListElementByID).value = remainingBudget;
         document.getElementById('mb-' + teamListElementByID).value =
-            team.myTeam.length === 11 ? 0 : remainingBudget - (((8 - (team.myTeam.length - 3)) - 1) * 100)
+            team.myTeam.length === 11 ? 0 : remainingBudget - (((8 - (team.myTeam.length - 3)) - 1) * 100);
+        document.getElementById('rank-'+teamListElementByID).innerHTML = team.myTeam.length;
     }
 };
 
