@@ -1,5 +1,5 @@
 let jsonObject = {};
-const URL = "192.168.31.53:8080";
+const URL = "192.168.2.201:8080";
 let editPlayerObject = {};
 let defaultBudget = 16000;
 
@@ -44,6 +44,7 @@ const nextClick = async function () {
         console.log("Error in nextClick Function: \n " + error);
     }
     document.getElementById("next-btn").disabled = true;
+    document.getElementById("preview-btn").disabled = true;
     document.getElementById("sold-btn").disabled = false;
 };
 
@@ -297,8 +298,20 @@ const soldClick = async function () {
     }
 
     document.getElementById("next-btn").disabled = false;
+    document.getElementById("preview-btn").disabled = false;
 };
 
 const openPreviewForAudience = function () {
-    window.open('preview.html', "_blank")
+     try {
+        const response =  fetch("http://" + URL + "/APL2019/webapi/team/preview", {
+            method: "GET",
+            credentials: 'include'
+        });
+        //internal server error -- handle it @jatan
+        if (response.status === 500) {
+            alert("500 status error in preview API");
+        }
+    } catch (error) {
+        alert("Error in preview Function: \n " + error);
+    }
 };

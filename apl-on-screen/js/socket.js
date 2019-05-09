@@ -1,6 +1,6 @@
-//const URL = "192.168.21.87:80";
-const URL = "localhost:8080";
 
+const URL = "192.168.2.201:8080";
+//team/preview
 function onLoad (){
    //doSoldOutAnimation();
     let wsUri = "ws://"+URL+"/APL2019/projector/goyanibhavik369@gmail.com";
@@ -14,9 +14,9 @@ function doSoldOutAnimation() {
     $('.stamp').fadeIn('fast');
     $('.stamp').animate({opacity:1}, 300);
 
-    $('.stamp').animate({ width:434, height:387, top:115, left:70}, 600, 'easeInOutExpo', function(){
+    $('.stamp').animate({ width:434, height:387, top:200, left:220}, 600, 'easeInOutExpo', function(){
         $('#aproved').css('opacity', '0.8');
-        $(this).delay(500).animate({opacity:0, width:890, height:890, top:78, left:263}, 700, 'easeInOutExpo');
+        $(this).delay(500).animate({opacity:0, width:890, height:890, top:300, left:250}, 700, 'easeInOutExpo');
 
     });
 }
@@ -28,40 +28,142 @@ function resetSoldAnimation(){
 function onMessage(evt) {
  //@jatan evt.data consists of player data in our case
     resetSoldAnimation();
-     console.log("received over websockets: " + evt.data);
-     let player = JSON.parse(evt.data);
-     if(!player.isBlind){
-         document.getElementById("playerImage").src = player.photo;
-         document.getElementById("name").innerHTML = player.firstName + " " + player.lastName;
-         document.getElementById("battingSkills").innerHTML = player.battingRating;
-         document.getElementById("bowlingSkills").innerHTML = player.bowlingRating;
-         document.getElementById("fieldingSkills").innerHTML = player.fieldingRating;
-         document.getElementById("battingComments").innerHTML = player.battingComment;
-         document.getElementById("bowlingComments").innerHTML = player.bowlingComment;
-         document.getElementById("fieldingComments").innerHTML = player.fieldingComment;
+    console.log("received over websockets: " + evt.data);
+    let response = JSON.parse(evt.data);
+    if(response.type === "team"){
+        document.getElementById('playerScreen').style.display = 'none';
+        document.getElementById('allTeamScreen').style.display = 'block';
+        showAllTeamScreen(response);
+        
+    }
+    else{
+        document.getElementById('allTeamScreen').style.display = 'none';
+        document.getElementById('playerScreen').style.display = 'block';
+        showPlayerScreen(response);
+       
+    }
+     
+};
+
+
+function loadTeamListData(team, teamListElementByID) {
+    let teamListTag = document.getElementById(teamListElementByID);
+    if (team.myTeam) {
+        team.myTeam.forEach(function (player, i) {
+            if (!document.getElementById(player._id)) {
+                let li = document.createElement("li");
+                li.setAttribute("id", player._id);
+               // li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
+                li.appendChild(document.createTextNode("\u2022" + " "+player.firstName + " " + player.lastName));
+                teamListTag.appendChild(li);
+            }
+        });
+    }
+};
+
+function showAllTeamScreen(response){
+    const teams = JSON.parse(response.json);
+    console.log("Team preview screen");
+    console.log(teams);
+    teams.forEach(function(team){
+        switch (team.teamName) {
+            case "Griffintown Warriors":
+                loadTeamListData(team, "gw");
+                break;
+            case "TMR Supersonics":
+                loadTeamListData(team, "tmr");
+                break;
+            case "Laval Titans":
+                loadTeamListData(team, "lt");
+                break;
+            case "ParcEx Knight Riders":
+                loadTeamListData(team, "px");
+                break;
+            case "West Island Mustangs":
+                loadTeamListData(team, "wim");
+                break;
+            case "Verdun Vikings":
+                loadTeamListData(team, "vv");
+                break;
+            case "Westmount Fury":
+                loadTeamListData(team, "wf");
+                break;
+            case "Lachine Mavericks":
+                loadTeamListData(team, "lm");
+                break;
+            case "Mont Royal Eagles":
+                loadTeamListData(team, "mre");
+                break;
+            case "South Shore Lions":
+                loadTeamListData(team, "ssl");
+                break;
+            case "Downtown Thunders":
+                loadTeamListData(team, "dt");
+                break;
+            case "NDG Strikers":
+                loadTeamListData(team, "ndg");
+                break;
+            default:
+                break;
+
+        }
+    })
+}
+
+function showPlayerScreen(response){
+    const player = JSON.parse(response.json);
+    console.log("Player Screen");
+    console.log(player);
+    let pImage = document.getElementById("playerImage")
+    let pName = document.getElementById("name")
+    let pBattingSkills = document.getElementById("battingSkills")
+    let pBowlingSkills = document.getElementById("bowlingSkills")
+    let pFieldingSkills = document.getElementById("fieldingSkills")
+
+    let pBattingComments = document.getElementById("battingComments");
+    let pBowlingComments = document.getElementById("bowlingComments");
+    let pFieldingComments = document.getElementById("fieldingComments");
+    
+    
+    if(!player.isBlind){
+        pImage.src = player.photo;
+        pName.innerHTML = player.firstName + " " + player.lastName;
+        
+        pBattingSkills.innerHTML = player.battingRating;
+        pBowlingSkills .innerHTML = player.bowlingRating;
+        pFieldingSkills .innerHTML = player.fieldingRating;
+        
+        pBattingComments.innerHTML = player.battingComment;
+        pBowlingComments .innerHTML = player.bowlingComment;
+        pFieldingComments.innerHTML = player.fieldingComment;
      }
      else{
-         document.getElementById("playerImage").src = "images/profile1.png";
-         document.getElementById("name").innerHTML = "Blind Player";
-         document.getElementById("battingSkills").innerHTML = " ";
-         document.getElementById("bowlingSkills").innerHTML = " ";
-         document.getElementById("fieldingSkills").innerHTML =" ";
-         document.getElementById("battingComments").innerHTML = " ";
-         document.getElementById("bowlingComments").innerHTML = " ";
-         document.getElementById("fieldingComments").innerHTML = " ";
+         pImage.src = "images/profile1.png";
+         pName.innerHTML = "Blind Player";
+         
+         pBattingSkills.innerHTML = " ";
+         pBowlingSkills .innerHTML = " ";
+         pFieldingSkills .innerHTML =" ";
+         
+         pBattingComments.innerHTML = " ";
+         pBowlingComments .innerHTML = " ";
+         pFieldingComments.innerHTML = " ";
      }
 
 
     if(player.teamName){
         if(player.isBlind){
-            document.getElementById("playerImage").src = player.photo;
-            document.getElementById("name").innerHTML = player.firstName + " " + player.lastName;
-            document.getElementById("battingSkills").innerHTML = player.battingRating;
-            document.getElementById("bowlingSkills").innerHTML = player.bowlingRating;
-            document.getElementById("fieldingSkills").innerHTML = player.fieldingRating;
-            document.getElementById("battingComments").innerHTML = player.battingComment;
-            document.getElementById("bowlingComments").innerHTML = player.bowlingComment;
-            document.getElementById("fieldingComments").innerHTML = player.fieldingComment;
+            pImage.src = player.photo;
+            pName.innerHTML = player.firstName + " " + player.lastName;
+            
+            pBattingSkills.innerHTML = player.battingRating;
+            pBowlingSkills.innerHTML = player.bowlingRating;
+            pFieldingSkills.innerHTML = player.fieldingRating;
+            
+            pBattingComments.innerHTML = player.battingComment;
+            pBowlingComments.innerHTML = player.bowlingComment;
+            pFieldingComments.innerHTML = player.fieldingComment;
+            
             window.setTimeout(doSoldOutAnimation, 3000);
         }
         else{
@@ -70,9 +172,8 @@ function onMessage(evt) {
 
 
     }
+    
 }
-
-
 function onError(evt) {
     writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
 }
