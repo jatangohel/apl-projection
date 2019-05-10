@@ -1,7 +1,7 @@
 let jsonObject = {};
 const URL = "192.168.2.201:8080";
 let editPlayerObject = {};
-let defaultBudget = 16000;
+let defaultBudget = 20000;
 
 const onLoad = async function () {
     try {
@@ -39,13 +39,15 @@ const nextClick = async function () {
         if (response.status === 500) {
             console.log("500 status error in nextClick function\n");
         }
+         document.getElementById("next-btn").disabled = true;
+        document.getElementById("preview-btn").disabled = true;
+        document.getElementById("sold-btn").disabled = false;
 
     } catch (error) {
+        alert("There is no player left for auction !");
         console.log("Error in nextClick Function: \n " + error);
     }
-    document.getElementById("next-btn").disabled = true;
-    document.getElementById("preview-btn").disabled = true;
-    document.getElementById("sold-btn").disabled = false;
+   
 };
 
 const getRadioVal = function (form, name) {
@@ -200,7 +202,7 @@ const editPlayer = async function () {
     }
 };
 
-const loadTeamListData = function (team, teamListElementByID) {
+const loadTeamListData = function (team, teamListElementByID, teamRadioButtonID) {
     let teamListTag = document.getElementById(teamListElementByID);
     if (team.myTeam) {
         let remainingBudget = defaultBudget;
@@ -224,6 +226,9 @@ const loadTeamListData = function (team, teamListElementByID) {
         document.getElementById('mb-' + teamListElementByID).value =
             team.myTeam.length === 11 ? 0 : remainingBudget - (((8 - (team.myTeam.length - 3)) - 1) * 100);
         document.getElementById('rank-'+teamListElementByID).innerHTML = team.myTeam.length;
+        if(team.myTeam.length === 11){
+            document.getElementById(teamRadioButtonID).disabled = true;
+        }
     }
 };
 
@@ -238,40 +243,40 @@ const loadAllTeamPlayerInformation = async function () {
         // altough it is little bit unconventional method to do it but it saves lot of time in rendering
         switch (team.teamName) {
             case "Griffintown Warriors":
-                loadTeamListData(team, "gw");
+                loadTeamListData(team, "gw","griffintown_warriors");
                 break;
             case "TMR Supersonics":
-                loadTeamListData(team, "tmr");
+                loadTeamListData(team, "tmr","tmr_supersonics");
                 break;
             case "Laval Titans":
-                loadTeamListData(team, "lt");
+                loadTeamListData(team, "lt","laval_titans");
                 break;
             case "ParcEx Knight Riders":
-                loadTeamListData(team, "px");
+                loadTeamListData(team, "px","knight_riders");
                 break;
             case "West Island Mustangs":
-                loadTeamListData(team, "wim");
+                loadTeamListData(team, "wim","west_island_mustangs");
                 break;
             case "Verdun Vikings":
-                loadTeamListData(team, "vv");
+                loadTeamListData(team, "vv","verdun_vikings");
                 break;
             case "Westmount Fury":
-                loadTeamListData(team, "wf");
+                loadTeamListData(team, "wf","westmount_fury");
                 break;
             case "Lachine Mavericks":
-                loadTeamListData(team, "lm");
+                loadTeamListData(team, "lm","lachine_mavericks");
                 break;
             case "Mont Royal Eagles":
-                loadTeamListData(team, "mre");
+                loadTeamListData(team, "mre","mont_royal_eagles");
                 break;
             case "South Shore Lions":
-                loadTeamListData(team, "ssl");
+                loadTeamListData(team, "ssl","south_shore_lions");
                 break;
             case "Downtown Thunders":
-                loadTeamListData(team, "dt");
+                loadTeamListData(team, "dt","downtown_thunders");
                 break;
             case "NDG Strikers":
-                loadTeamListData(team, "ndg");
+                loadTeamListData(team, "ndg","ndg_strikers");
                 break;
             default:
                 break;
