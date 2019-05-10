@@ -14,7 +14,7 @@ html {
     left: 32%;
     z-index: 26;
       animation: blinker 1s linear infinite;
-/*    display: none;*/
+    display: none;
 }
 
 @keyframes blinker {  
@@ -120,6 +120,7 @@ ul {
 }
 
 .label.label-default.rank-label {
+    color: white;
     font-size: 20px;
     font-weight: 600;
     background-color: #2d2d2d;
