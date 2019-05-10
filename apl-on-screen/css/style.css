@@ -8,7 +8,7 @@ html {
     background-repeat: no-repeat;
 }
 
-.blindOnScreen {
+#blindOnScreen {
     color: #CA0000;
     position: absolute;
     left: 32%;

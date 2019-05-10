@@ -29,10 +29,12 @@ function onMessage(evt) {
  //@jatan evt.data consists of player data in our case
     resetSoldAnimation();
     console.log("received over websockets: " + evt.data);
+    document.getElementById("blindOnScreen").style.display = 'none';
     let response = JSON.parse(evt.data);
     if(response.type === "team"){
         document.getElementById('playerScreen').style.display = 'none';
         document.getElementById('allTeamScreen').style.display = 'block';
+       
         showAllTeamScreen(response);
         
     }
@@ -113,7 +115,8 @@ function showAllTeamScreen(response){
 function showPlayerScreen(response){
     const player = JSON.parse(response.json);
     console.log("Player Screen");
-    console.log(player);
+    let blindBlinker = document.getElementById("blindOnScreen");
+    blindBlinker.style.display = "none";
     let pImage = document.getElementById("playerImage")
     let pName = document.getElementById("name")
     let pBattingSkills = document.getElementById("battingSkills")
@@ -125,52 +128,24 @@ function showPlayerScreen(response){
     let pFieldingComments = document.getElementById("fieldingComments");
     
     
-    if(!player.isBlind){
-        pImage.src = player.photo;
-        pName.innerHTML = player.firstName + " " + player.lastName;
-        
-        pBattingSkills.innerHTML = player.battingRating;
-        pBowlingSkills .innerHTML = player.bowlingRating;
-        pFieldingSkills .innerHTML = player.fieldingRating;
-        
-        pBattingComments.innerHTML = player.battingComment;
-        pBowlingComments .innerHTML = player.bowlingComment;
-        pFieldingComments.innerHTML = player.fieldingComment;
-     }
-     else{
-         pImage.src = "images/profile1.png";
-         pName.innerHTML = "Blind Player";
-         
-         pBattingSkills.innerHTML = " ";
-         pBowlingSkills .innerHTML = " ";
-         pFieldingSkills .innerHTML =" ";
-         
-         pBattingComments.innerHTML = " ";
-         pBowlingComments .innerHTML = " ";
-         pFieldingComments.innerHTML = " ";
-     }
+    pImage.src = player.photo;
+    pName.innerHTML = player.firstName + " " + player.lastName;
 
+    pBattingSkills.innerHTML = player.battingRating;
+    pBowlingSkills .innerHTML = player.bowlingRating;
+    pFieldingSkills .innerHTML = player.fieldingRating;
+
+    pBattingComments.innerHTML = player.battingComment;
+    pBowlingComments .innerHTML = player.bowlingComment;
+    pFieldingComments.innerHTML = player.fieldingComment;
+    
+    if(player.isBlind){
+        blindBlinker.style.display = "block";
+     }
 
     if(player.teamName){
-        if(player.isBlind){
-            pImage.src = player.photo;
-            pName.innerHTML = player.firstName + " " + player.lastName;
-            
-            pBattingSkills.innerHTML = player.battingRating;
-            pBowlingSkills.innerHTML = player.bowlingRating;
-            pFieldingSkills.innerHTML = player.fieldingRating;
-            
-            pBattingComments.innerHTML = player.battingComment;
-            pBowlingComments.innerHTML = player.bowlingComment;
-            pFieldingComments.innerHTML = player.fieldingComment;
-            
-            window.setTimeout(doSoldOutAnimation, 3000);
-        }
-        else{
+            blindBlinker.style.display = "none";
             doSoldOutAnimation();
-        }
-
-
     }
     
 }
