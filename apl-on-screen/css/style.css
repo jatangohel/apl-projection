@@ -163,3 +163,56 @@ img#aproved {
     {
     transition: all 0.6s ease;
 }
+
+.lm-team {
+    border-radius: 10px;
+    padding: 10px 4px;
+}
+
+#dt {
+    background-color: #353638;
+}
+
+#gw {
+    background-color: rgba(16, 155, 0, 0.8);
+}
+
+#lm {
+    background-color: #353638;
+}
+
+#lt {
+    background-color: #353638;
+}
+
+#mre {
+    background-color: #353638;
+}
+
+#ndg {
+    background-color: #353638;
+}
+
+#px {
+    background-color: #353638;
+}
+
+#ssl {
+    background-color: #353638;
+}
+
+#tmr {
+    background-color: #353638;
+}
+
+#vv {
+    background-color: #353638;
+}
+
+#wim {
+    background-color: #353638;
+}
+
+#wf {
+    background-color: #353638;
+}
