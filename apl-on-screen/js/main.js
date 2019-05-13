@@ -1,5 +1,5 @@
 let jsonObject = {};
-const URL = "192.168.2.201:8080";
+const URL = "apl2019p1943019174trial.hanatrial.ondemand.com";
 let editPlayerObject = {};
 let defaultBudget = 16000;
  

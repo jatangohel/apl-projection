@@ -1,11 +1,11 @@
 let jsonObject = {};
-const URL = "192.168.2.201:8080";
+const URL = "apl2019p1943019174trial.hanatrial.ondemand.com";
 let editPlayerObject = {};
 let defaultBudget = 20000;
 
 const onLoad = async function () {
     try {
-        const response = await fetch("http://" + URL + "/APL2019/webapi/logger/login?email=goyanibhavik369@gmail.com&password=1234", {
+        const response = await fetch("https://" + URL + "/APL2019/webapi/logger/login?email=parth.nayak16@gmail.com&password=Haridham@369", {
             method: "GET",
             credentials: 'include'
         });
@@ -24,7 +24,7 @@ const onLoad = async function () {
 
 const nextClick = async function () {
     try {
-        const response = await fetch("http://" + URL + "/APL2019/webapi/player/getNextPlayer", {
+        const response = await fetch("https://" + URL + "/APL2019/webapi/player/getNextPlayer", {
             method: "GET",
             credentials: 'include'
         }).then(function (response) {
@@ -123,7 +123,7 @@ const createDataForSold = function () {
 
 const sendSoldPlayerRequest = async jsonData => {
     try {
-        await fetch("http://" + URL + "/APL2019/webapi/player/playerSold", {
+        await fetch("https://" + URL + "/APL2019/webapi/player/playerSold", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -141,7 +141,7 @@ const sendSoldPlayerRequest = async jsonData => {
 
 const sendTeamPlayerRequest = async function () {
     try {
-        const respose = await fetch("http://" + URL + "/APL2019/webapi/team/getAllTeams", {
+        const respose = await fetch("https://" + URL + "/APL2019/webapi/team/getAllTeams", {
             method: "GET",
             credentials: 'include'
         }).then(function (response) {
@@ -308,7 +308,7 @@ const soldClick = async function () {
 
 const openPreviewForAudience = function () {
      try {
-        const response =  fetch("http://" + URL + "/APL2019/webapi/team/preview", {
+        const response =  fetch("https://" + URL + "/APL2019/webapi/team/preview", {
             method: "GET",
             credentials: 'include'
         });

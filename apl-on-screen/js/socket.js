@@ -1,9 +1,9 @@
 
-const URL = "192.168.2.201:8080";
+const URL = "apl2019p1943019174trial.hanatrial.ondemand.com";
 //team/preview
 function onLoad (){
    //doSoldOutAnimation();
-    let wsUri = "ws://"+URL+"/APL2019/projector/goyanibhavik369@gmail.com";
+    let wsUri = "wss://"+URL+"/APL2019/projector/goyanibhavik369@gmail.com";
     let websocket = new WebSocket(wsUri);
     websocket.onmessage = function(evt) { onMessage(evt) };
     websocket.onerror = function(evt) { onError(evt) };
