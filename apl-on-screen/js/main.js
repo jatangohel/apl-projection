@@ -1,8 +1,8 @@
 let jsonObject = {};
-const URL = "apl2019p1943019174trial.hanatrial.ondemand.com";
+const URL = "apl2019.cfapps.us10.hana.ondemand.com";
 let editPlayerObject = {};
 let defaultBudget = 16000;
- 
+
 const loadTeamListData = function (team, teamListElementByID) {
     let teamListTag = document.getElementById(teamListElementByID);
     if (team.myTeam) {
@@ -12,8 +12,8 @@ const loadTeamListData = function (team, teamListElementByID) {
             if (!document.getElementById(player._id)) {
                 let li = document.createElement("li");
                 li.setAttribute("id", player._id);
-               // li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
-                li.appendChild(document.createTextNode("\u2022" + " "+player.firstName + " " + player.lastName));
+                // li.appendChild(document.createTextNode(player.firstName + " " + player.lastName));
+                li.appendChild(document.createTextNode("\u2022" + " " + player.firstName + " " + player.lastName));
                 teamListTag.appendChild(li);
             }
         });
@@ -30,41 +30,17 @@ const loadAllTeamPlayerInformation = async function () {
         // the tabular format, thus each coloumn is specifically dedicated to the respective team.
         // altough it is little bit unconventional method to do it but it saves lot of time in rendering
         switch (team.teamName) {
-            case "Griffintown Warriors":
-                loadTeamListData(team, "gw");
+            case "Atmiya Avengers":
+                loadTeamListData(team, "aa");
                 break;
-            case "TMR Supersonics":
-                loadTeamListData(team, "tmr");
+            case "Dasatva Dazzlers":
+                loadTeamListData(team, "dd");
                 break;
-            case "Laval Titans":
-                loadTeamListData(team, "lt");
+            case "Samp Super Kings":
+                loadTeamListData(team, "ssk");
                 break;
-            case "ParcEx Knight Riders":
-                loadTeamListData(team, "px");
-                break;
-            case "West Island Mustangs":
-                loadTeamListData(team, "wim");
-                break;
-            case "Verdun Vikings":
-                loadTeamListData(team, "vv");
-                break;
-            case "Westmount Fury":
-                loadTeamListData(team, "wf");
-                break;
-            case "Lachine Mavericks":
-                loadTeamListData(team, "lm");
-                break;
-            case "Mont Royal Eagles":
-                loadTeamListData(team, "mre");
-                break;
-            case "South Shore Lions":
-                loadTeamListData(team, "ssl");
-                break;
-            case "Downtown Thunders":
-                loadTeamListData(team, "dt");
-                break;
-            case "NDG Strikers":
-                loadTeamListData(team, "ndg");
+            case "Suhradbhav Strikers":
+                loadTeamListData(team, "ss");
                 break;
             default:
                 break;

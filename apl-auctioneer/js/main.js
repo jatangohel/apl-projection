@@ -1,11 +1,11 @@
 let jsonObject = {};
-const URL = "apl2019p1943019174trial.hanatrial.ondemand.com";
+const URL = "apl2019.cfapps.us10.hana.ondemand.com";
 let editPlayerObject = {};
 let defaultBudget = 20000;
 
 const onLoad = async function () {
     try {
-        const response = await fetch("https://" + URL + "/APL2019/webapi/logger/login?email=parth.nayak16@gmail.com&password=Haridham@369", {
+        const response = await fetch("https://" + URL + "/APL2019/webapi/logger/login?email=tejas0904@gmail.com&password=1993", {
             method: "GET",
             credentials: 'include'
         });
@@ -39,7 +39,7 @@ const nextClick = async function () {
         if (response.status === 500) {
             console.log("500 status error in nextClick function\n");
         }
-         document.getElementById("next-btn").disabled = true;
+        document.getElementById("next-btn").disabled = true;
         document.getElementById("preview-btn").disabled = true;
         document.getElementById("sold-btn").disabled = false;
 
@@ -47,7 +47,7 @@ const nextClick = async function () {
         alert("There is no player left for auction !");
         console.log("Error in nextClick Function: \n " + error);
     }
-   
+
 };
 
 const getRadioVal = function (form, name) {
@@ -242,41 +242,41 @@ const loadAllTeamPlayerInformation = async function () {
         // the tabular format, thus each coloumn is specifically dedicated to the respective team.
         // altough it is little bit unconventional method to do it but it saves lot of time in rendering
         switch (team.teamName) {
-            case "Griffintown Warriors":
-                loadTeamListData(team, "gw","griffintown_warriors");
+            case teamsPlayerResponse:
+                loadTeamListData(team, "gw", "griffintown_warriors");
                 break;
             case "TMR Supersonics":
-                loadTeamListData(team, "tmr","tmr_supersonics");
+                loadTeamListData(team, "tmr", "tmr_supersonics");
                 break;
             case "Laval Titans":
-                loadTeamListData(team, "lt","laval_titans");
+                loadTeamListData(team, "lt", "laval_titans");
                 break;
             case "ParcEx Knight Riders":
-                loadTeamListData(team, "px","knight_riders");
+                loadTeamListData(team, "px", "knight_riders");
                 break;
             case "West Island Mustangs":
-                loadTeamListData(team, "wim","west_island_mustangs");
+                loadTeamListData(team, "wim", "west_island_mustangs");
                 break;
             case "Verdun Vikings":
-                loadTeamListData(team, "vv","verdun_vikings");
+                loadTeamListData(team, "vv", "verdun_vikings");
                 break;
             case "Westmount Fury":
-                loadTeamListData(team, "wf","westmount_fury");
+                loadTeamListData(team, "wf", "westmount_fury");
                 break;
             case "Lachine Mavericks":
-                loadTeamListData(team, "lm","lachine_mavericks");
+                loadTeamListData(team, "lm", "lachine_mavericks");
                 break;
             case "Mont Royal Eagles":
-                loadTeamListData(team, "mre","mont_royal_eagles");
+                loadTeamListData(team, "mre", "mont_royal_eagles");
                 break;
             case "South Shore Lions":
-                loadTeamListData(team, "ssl","south_shore_lions");
+                loadTeamListData(team, "ssl", "south_shore_lions");
                 break;
-            case "Downtown Thunders":
-                loadTeamListData(team, "dt","downtown_thunders");
+            case true:
+                loadTeamListData(team, "dt", "downtown_thunders");
                 break;
             case "NDG Strikers":
-                loadTeamListData(team, "ndg","ndg_strikers");
+                loadTeamListData(team, "ndg", "ndg_strikers");
                 break;
             default:
                 break;
@@ -307,8 +307,8 @@ const soldClick = async function () {
 };
 
 const openPreviewForAudience = function () {
-     try {
-        const response =  fetch("https://" + URL + "/APL2019/webapi/team/preview", {
+    try {
+        const response = fetch("https://" + URL + "/APL2019/webapi/team/preview", {
             method: "GET",
             credentials: 'include'
         });

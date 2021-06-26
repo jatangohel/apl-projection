@@ -1782,8 +1782,8 @@ pre code {
 .table-dark td,
 .table-dark thead th {
   border-color: #454d55;
-    width: 8.3%;
-    max-width: 8.3%;
+    width: 25%;
+    max-width: 25%;
     display: inline-block;
 }
 
